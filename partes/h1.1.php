@@ -27,7 +27,7 @@ if ($_POST) {
 
     $sql = "INSERT INTO `MENSAJE` (`id`, `emisor`, `destinatario`, `mensaje`,`fecha`,`tipo`) VALUES (NULL,'$rutEmisor','$rutDestinatario','$mensaje',  '$date' ,'reclamo')";
     $insert = $conn->query($sql);
-    #header("location:h1.1.php");
+    header("location:h1.1.php");
 }
 if ($_GET) {
     $id =  $_GET['borrar'];
@@ -121,25 +121,16 @@ if ($_GET) {
                                                 <option>Administrador</option>
                                                 <option>Vecino</option>
                                                 <option>...</option>
-                                                <?php
-
-                                                echo $_POST['inputState1'];
-
-                                                ?>
                                             </select>
-
                                             <br>
                                             <select id="inpu" class="form-control" name="nombreDestinatario">
                                                 <option selected>Seleccione el nombre del destinatario...</option>
-
                                             </select>
 
                                             <!-- 
                                             <br>
-                                            <input required placeholder="nombre del destinatario" class="form-control" type="text" name="nombreDestinatario" id=""> -->
-
-
-
+                                            <input required placeholder="nombre del destinatario" class="form-control" type="text" name="nombreDestinatario" id="">
+                                        -->
 
                                             <br>
                                             ASUNTO
@@ -173,33 +164,39 @@ if ($_GET) {
                                                 <!-- </thead> -->
                                                 <tbody>
                                                     <?php
+                                                    $r = $xd->fetchAll();
                                                     foreach ($msjs as $msj) {
-                                                        foreach ($xd as $x) {
-                                                            if ($x['rut'] == $msj['emisor']) {
-                                                                $emi = $x['nombre'];
-                                                            }
-                                                            if($x['rut'] == $msj['destinatario']){
-                                                                $desti = $x['nombre'];
-                                                            }
-                                                        }
                                                     ?>
                                                         <tr>
-                                                            <td>
-                                                                <?php
-
-                                                                echo $emi;
-
+                                                            <td><?php
+                                                                foreach ($r as $x) {
+                                                                    if ($x['rut'] == $msj['emisor']) {
+                                                                        # code...
+                                                                        echo $x['nombre'];
+                                                                        break;
+                                                                    }
+                                                                }
                                                                 ?>
-
-
                                                             </td>
-                                                            <td> <?php echo $desti ?> </td>
+                                                            <td><?php
+                                                                foreach ($r as $x) {
+                                                                    if ($x['rut'] == $msj['destinatario']) {
+                                                                        # code...
+                                                                        echo $x['nombre'];;
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                ?>
+                                                            </td>
                                                             <td> <?php echo $msj['mensaje']; ?> </td>
                                                             <td> <?php echo $msj['fecha']; ?> </td>
                                                             <td> <?php echo $msj['tipo']; ?> </td>
-                                                            <td> <a class="btn btn-danger" href="?borrar=<?php echo $msj['id']; ?>">Eliminar</a> </td>
+                                                            <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
                                                         </tr>
-                                                    <?php } ?>
+                                                    <?php
+
+                                                    }
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -216,18 +213,13 @@ if ($_GET) {
     <script type="text/javascript">
         function getSelectValue(value) {
             $('#inpu').html('');
-
             var xhttp = new XMLHttpRequest();
             xhttp.open('POST', 'ajax.php', true);
             xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhttp.onreadystatechange = function() {
                 document.getElementById('inpu').innerHTML = xhttp.responseText;
             }
-
             xhttp.send('tipocargo=' + value);
-
-
-
         }
     </script>
     <!-- Optional JavaScript -->
