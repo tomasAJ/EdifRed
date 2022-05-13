@@ -3,26 +3,46 @@
 <!-- fin head -->
 <?php include("../partes/conexion.php"); ?>
 <?php
+
+#consulta a la base de datos
+$msjs = $conn->query("SELECT * FROM `MENSAJE`");
+
+$xd = $conn->query("SELECT `rut`,`nombre` FROM `VECINO` UNION SELECT `rut`, `nombre` FROM `ADMINISTRATIVO`");
+
+
+
 if ($_POST) {
-    $nombreEmisor = $_SESSION['usuario'];
-    $cargoDestinatario = $_POST['cargoDestinatario'];
-    $nombreDestinatario = $_POST['nombreDestinatario'];
+    $rutEmisor = $_SESSION['usuario'] . "";
+    $cargoDestinatario = $_POST['cargoDestinatario'] . "";
+    $nombreDestinatario = $_POST['nombreDestinatario'] . "";
     $fecha = new DateTime();
+    $date = $fecha->format('Y-m-d') . "";
     $mensaje = $_POST['mensaje'];
-    $sql = "INSERT INTO `mensaje` (`id`, `emisor`, `destinatario`, `mensaje`,`fecha`,`tipo`) VALUES (4, '$nombreEmisor', '$nombreDestinatario', '$mensaje', '$fecha','reclamo');";
-    $msjs = $conn->query($sql);
-    header("location:h1.1.php");
+
+    foreach ($xd as $x) {
+        if ($x['nombre'] == $nombreDestinatario) {
+            $rutDestinatario = $x['rut'];
+        }
+    }
+
+    $sql = "INSERT INTO `MENSAJE` (`id`, `emisor`, `destinatario`, `mensaje`,`fecha`,`tipo`) VALUES (NULL,'$rutEmisor','$rutDestinatario','$mensaje',  '$date' ,'reclamo')";
+    $insert = $conn->query($sql);
+    #header("location:h1.1.php");
 }
 if ($_GET) {
     $id =  $_GET['borrar'];
     // delete data ddbb
-    $sql = "DELETE FROM `mensaje` WHERE `mensaje`.`id` =" . $id;
+    $sql = "DELETE FROM `MENSAJE` WHERE `MENSAJE`.`id` =" . $id;
     $conn->query($sql);
     header("location:h1.1.php");
 }
-#consulta a la base de datos
-$msjs = $conn->query("SELECT * FROM `MENSAJE`");
+
+
+
+
+
 ?>
+
 <body>
     <div class="d-flex" id="content-wrapper">
         <!-- sideBar -->
@@ -93,16 +113,34 @@ $msjs = $conn->query("SELECT * FROM `MENSAJE`");
                                     </div>
                                     <div class="card-body">
                                         <form action="h1.1.php" method="post" enctype="multipart/form-data">
-                                            <label for="inputState">DESTINATARIO</label>
-                                            <select id="inputState" class="form-control" name="cargoDestinatario">
-                                                <option selected>Seleccione el cargo...</option>
-                                                <option>Conserjería</option>
+                                            <label for="inputState1">DESTINATARIO</label>
+
+                                            <select id="inputState1" class="form-control" name="cargoDestinatario" onchange="getSelectValue(this.value);">
+                                                <option selected>Seleccione el cargo del destinatario...</option>
+                                                <option>Conserje</option>
                                                 <option>Administrador</option>
                                                 <option>Vecino</option>
                                                 <option>...</option>
+                                                <?php
+
+                                                echo $_POST['inputState1'];
+
+                                                ?>
                                             </select>
+
                                             <br>
-                                            <input required placeholder="nombre del destinatario" class="form-control" type="text" name="nombreDestinatario" id="">
+                                            <select id="inpu" class="form-control" name="nombreDestinatario">
+                                                <option selected>Seleccione el nombre del destinatario...</option>
+
+                                            </select>
+
+                                            <!-- 
+                                            <br>
+                                            <input required placeholder="nombre del destinatario" class="form-control" type="text" name="nombreDestinatario" id=""> -->
+
+
+
+
                                             <br>
                                             ASUNTO
                                             <br>
@@ -122,22 +160,40 @@ $msjs = $conn->query("SELECT * FROM `MENSAJE`");
                                     </div>
                                     <div class="card-body">
                                         <div class="col-lg-12 my-3">
-                                            <table class="table"  >
+                                            <table class="table">
                                                 <!-- <thead> -->
-                                                    <tr class = "mx-auto">    
-                                                        <th>EMISOR</th>
-                                                        <th>DESTINATARIO</th>
-                                                        <th>MENSAJE</th>
-                                                        <th>FECHA</th>
-                                                        <th>TIPO</th>
-                                                        <th>ACCION</th>
-                                                    </tr>
+                                                <tr class="mx-auto">
+                                                    <th>EMISOR</th>
+                                                    <th>DESTINATARIO</th>
+                                                    <th>MENSAJE</th>
+                                                    <th>FECHA</th>
+                                                    <th>TIPO</th>
+                                                    <th>ACCION</th>
+                                                </tr>
                                                 <!-- </thead> -->
                                                 <tbody>
-                                                    <?php foreach ($msjs as $msj) { ?>
-                                                        <tr>     
-                                                            <td> <?php echo $msj['emisor']; ?> </td>
-                                                            <td> <?php echo $msj['destinatario']; ?> </td>
+                                                    <?php
+                                                    foreach ($msjs as $msj) {
+                                                        foreach ($xd as $x) {
+                                                            if ($x['rut'] == $msj['emisor']) {
+                                                                $emi = $x['nombre'];
+                                                            }
+                                                            if($x['rut'] == $msj['destinatario']){
+                                                                $desti = $x['nombre'];
+                                                            }
+                                                        }
+                                                    ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php
+
+                                                                echo $emi;
+
+                                                                ?>
+
+
+                                                            </td>
+                                                            <td> <?php echo $desti ?> </td>
                                                             <td> <?php echo $msj['mensaje']; ?> </td>
                                                             <td> <?php echo $msj['fecha']; ?> </td>
                                                             <td> <?php echo $msj['tipo']; ?> </td>
@@ -156,11 +212,31 @@ $msjs = $conn->query("SELECT * FROM `MENSAJE`");
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function getSelectValue(value) {
+            $('#inpu').html('');
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', 'ajax.php', true);
+            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.onreadystatechange = function() {
+                document.getElementById('inpu').innerHTML = xhttp.responseText;
+            }
+
+            xhttp.send('tipocargo=' + value);
+
+
+
+        }
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
