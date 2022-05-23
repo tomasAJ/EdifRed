@@ -147,7 +147,7 @@ if ($_GET) {
                                                             <td> <?php
                                                             $fecha_mensaje = new DateTime($msj['fecha']);
                                                             echo $fecha_mensaje->format('d-m-Y'); 
-                                                             //echo $msj['fecha']; 
+                                                             
                                                              ?> </td>
 
                                                             <td> <?php echo $msj['tipo']; ?> </td>
