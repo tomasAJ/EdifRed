@@ -55,54 +55,8 @@ if ($_GET) {
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
                 <!-- section 1 -->
-                <section class="bg-light py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-9 col-md-8">
-                                <!-- <h1 class="font-weight-bold mb-0">Bienvenido Juan</h1> -->
-                                <h1 class="font-weight-bold mb-0">BANDEJA DE ENTRADA</h1>
-                                <p class="lead text-muted">Revisa aquí</p>
-                            </div>
-                            <div class="col-lg-3 col-md-4 d-flex">
-                                <button class="btn btn-primary w-100 align-self-center">Redactar</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="bg-mix py-3">
-                    <div class="container">
-                        <div class="card rounded-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                        <div class="mx-auto">
-                                            <h6 class="text-muted" aria-hidden="true">RECIBIDOS</h6>
-                                            <h3 class="font-weight-bold"></h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                        <div class="mx-auto">
-                                            <h6 class="text-muted">ENVIADOS</h6>
-                                            <h3 class="font-weight-bold"></h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                        <div class="mx-auto">
-                                            <h6 class="text-muted">BORRADORES</h6>
-                                            <h3 class="font-weight-bold"></h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                        <div class="mx-auto">
-                                            <h6 class="text-muted">DESTACADOS</h6>
-                                            <h3 class="font-weight-bold"></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <?php include('../partes/bandeja.php') ?>
+
                 <section class="bg-light py-3">
                     <div class="container">
                         <div class="row">
@@ -189,7 +143,13 @@ if ($_GET) {
                                                                 ?>
                                                             </td>
                                                             <td> <?php echo $msj['mensaje']; ?> </td>
-                                                            <td> <?php echo $msj['fecha']; ?> </td>
+
+                                                            <td> <?php
+                                                            $fecha_mensaje = new DateTime($msj['fecha']);
+                                                            echo $fecha_mensaje->format('d-m-Y'); 
+                                                             //echo $msj['fecha']; 
+                                                             ?> </td>
+
                                                             <td> <?php echo $msj['tipo']; ?> </td>
                                                             <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
                                                         </tr>

@@ -20,8 +20,8 @@
                         class="img-fluid rounded-circle avatar mr-2"
                         alt="imagen" />
                         
-                        <?php echo $_SESSION['usuario'];?>
-                        <!-- Juan Íto -->
+                        
+                        <?php echo $_SESSION['nombreusuario'];?>
                         </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="../perfil/"><i class="fas fa-user"></i> Mi perfil</a>

@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-lg-9 col-md-8">
                                 <!-- <h1 class="font-weight-bold mb-0">Bienvenido Juan</h1> -->
-                                <h1 class="font-weight-bold mb-0">Bienvenido <?php echo $_SESSION['usuario'];?></h1>
+                                <h1 class="font-weight-bold mb-0">Bienvenido <?php echo $_SESSION['nombreusuario'];?></h1>
 
                                 
                                 <p class="lead text-muted">Revisa la última información</p>
