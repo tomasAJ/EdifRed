@@ -1,7 +1,7 @@
 <!-- head -->
-<?php include('../partes/head.php') ?>
+<?php include('head.php') ?>
 <!-- fin head -->
-<?php include("../partes/conexion.php"); ?>
+<?php include("../../partes/conexion.php"); ?>
 <?php
 
 #consulta a la base de datos
@@ -46,16 +46,16 @@ if ($_GET) {
 <body>
     <div class="d-flex" id="content-wrapper">
         <!-- sideBar -->
-        <?php include('../partes/sidebar.php') ?>
+        <?php include('../../partes/sidebar.php') ?>
         <!-- fin sideBar -->
         <div class="w-100">
             <!-- Navbar -->
-            <?php include('../partes/nav.php') ?>
+            <?php include('../../partes/nav.php') ?>
             <!-- Fin Navbar -->
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
                 <!-- section 1 -->
-                <?php include('../partes/bandeja.php') ?>
+                <?php include('../../partes/bandeja.php') ?>
 
                 <section class="bg-light py-3">
                     <div class="container">
