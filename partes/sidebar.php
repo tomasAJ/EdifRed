@@ -7,6 +7,10 @@
         <a href="../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Inicio</a>
 
+        <a href="../h2" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+            Diario Mural</a>
+
+
         <a href="" class="d-block text-light p-3 border-0"><i class="fas fa-users"></i>
             Conserjería</a>
 

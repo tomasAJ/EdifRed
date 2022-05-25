@@ -35,42 +35,7 @@
                     </div>
                 </section>
 
-                <section class="bg-mix py-3">
-                <div class="container">
-                    <div class="card rounded-0">
-                        <div class="card-body">
-                            <div class="row">
 
-                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                    <div class="mx-auto">
-                                        <h6 class="text-muted">NOTICIAS</h6>
-                                        <h3 class="font-weight-bold">ENCABEZADO</h3>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                    <div class="mx-auto">
-                                        <h6 class="text-muted">NOTICIAS</h6>
-                                        <h3 class="font-weight-bold">ENCABEZADO</h3>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                    <div class="mx-auto">
-                                        <h6 class="text-muted">NOTICIAS</h6>
-                                        <h3 class="font-weight-bold">ENCABEZADO</h3>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 d-flex stat my-3">
-                                    <div class="mx-auto">
-                                        <h6 class="text-muted">NOTICIAS</h6>
-                                        <h3 class="font-weight-bold">ENCABEZADO</h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </section>
 
               
         </div>

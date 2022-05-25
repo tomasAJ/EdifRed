@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Usuario: E2software
- * Contrasena: E2software1113
- * Nombre Base de datos: E2software_bd
- * 
- */
 $hostname = "146.83.194.142";
 $username = "E2software";
 $password = "E2software1113";
