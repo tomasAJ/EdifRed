@@ -1,1 +1,0 @@
-<?php include("../template/menu_izq.php");?>
