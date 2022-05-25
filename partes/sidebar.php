@@ -7,7 +7,11 @@
         <a href="../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Inicio</a>
 
+<<<<<<< HEAD
         <a href="../h2" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+=======
+        <a href="../partes/h2/aviso_vecino_o_comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+>>>>>>> ramaRicardo
             Diario Mural</a>
 
 
