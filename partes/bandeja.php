@@ -12,7 +12,7 @@
                             <div class="col-lg-3 col-md-4 d-flex">
 
                                 <!-- <button class="btn btn-primary w-100 align-self-center" href="/h1.1.php">Redactar</button> -->
-                                <a name="" id="" class="btn btn-primary w-100 align-self-center" href="h1.1.php" role="button">Redactar</a>
+                                <a name="" id="" class="btn btn-primary w-100 align-self-center" href="redactar.php" role="button">Redactar</a>
                             </div>
                         </div>
                     </div>
