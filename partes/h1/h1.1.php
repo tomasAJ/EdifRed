@@ -1,7 +1,7 @@
 <!-- head -->
 <?php include('head.php') ?>
 <!-- fin head -->
-<?php include("../../partes/conexion.php"); ?>
+<?php include("../conexion.php"); ?>
 <?php
 
 #consulta a la base de datos

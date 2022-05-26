@@ -1,5 +1,5 @@
 <?php
-include_once 'conexion.php';
+include_once '../conexion.php';
 
 if ( $_POST['tipocargo'] ) {
     $variable = $_POST['tipocargo'];
