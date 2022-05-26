@@ -87,10 +87,10 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
     <div class="d-flex" id="content-wrapper">
-        <?php include("../sidebar.php"); ?>
+        <?php include("sidebar.php"); ?>
         <div class="w-100">
 
-            <?php include("../nav.php"); ?> 
+            <?php include("nav.php"); ?> 
             <div id="content" class="bg-grey w-100">
                 <section>
                     <div class="col-md-12">
