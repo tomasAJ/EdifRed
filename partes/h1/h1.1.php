@@ -46,11 +46,11 @@ if ($_GET) {
 <body>
     <div class="d-flex" id="content-wrapper">
         <!-- sideBar -->
-        <?php include('../../partes/sidebar.php') ?>
+        <?php include('sidebar.php') ?>
         <!-- fin sideBar -->
         <div class="w-100">
             <!-- Navbar -->
-            <?php include('../../partes/nav.php') ?>
+            <?php include('nav.php') ?>
             <!-- Fin Navbar -->
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
