@@ -12,7 +12,7 @@
                             <div class="col-lg-3 col-md-4 d-flex">
 
                                 <!-- <button class="btn btn-primary w-100 align-self-center" href="/h1.1.php">Redactar</button> -->
-                                <a name="" id="" class="btn btn-primary w-100 align-self-center" href="h1.1.php" role="button">Redactar</a>
+                                <a name="" id="" class="btn btn-primary w-100 align-self-center" href="redactar.php" role="button">Redactar</a>
                             </div>
                         </div>
                     </div>
@@ -27,8 +27,9 @@
                                     <div class="col-lg-3 col-md-6 d-flex stat my-3">
                                         <div class="mx-auto">
                                             <h6 class="text-muted" aria-hidden="true">
-                                                <a href="recibidos.php">RECIBIDOS</a>
-                                                </h6>
+                                                <!-- <a href="recibidos.php">RECIBIDOS</a> -->
+                                                RECIBIDOS
+                                            </h6>
                                             <h3 class="font-weight-bold"></h3>
                                         </div>
                                     </div>

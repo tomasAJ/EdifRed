@@ -27,14 +27,14 @@ if ($_POST) {
 
     $sql = "INSERT INTO `MENSAJE` (`id`, `emisor`, `destinatario`, `mensaje`,`fecha`,`tipo`) VALUES (NULL,'$rutEmisor','$rutDestinatario','$mensaje',  '$date' ,'reclamo')";
     $insert = $conn->query($sql);
-    header("location:h1.1.php");
+    header("location:redactar.php");
 }
 if ($_GET) {
     $id =  $_GET['borrar'];
     // delete data ddbb
     $sql = "DELETE FROM `MENSAJE` WHERE `MENSAJE`.`id` =" . $id;
     $conn->query($sql);
-    header("location:h1.1.php");
+    header("location:redactar.php");
 }
 
 
@@ -66,7 +66,7 @@ if ($_GET) {
                                         <h6 class="font-weight-bold mb-0">MENSAJE</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form action="h1.1.php" method="post" enctype="multipart/form-data">
+                                        <form action="redactar.php" method="post" enctype="multipart/form-data">
                                             <label for="inputState1">DESTINATARIO</label>
 
                                             <select id="inputState1" class="form-control" name="cargoDestinatario" onchange="getSelectValue(this.value);">
@@ -89,9 +89,9 @@ if ($_GET) {
                                             <br>
                                             ASUNTO
                                             <br>
-                                            <input required class="form-control" type="text" name="asunto" id="">
-                                            <br>
-                                            <textarea required placeholder="Escriba su mensaje" class="form-control" name="mensaje" id="" rows="3"></textarea>
+                                            <input required placeholder="Escriba su mensaje" class="form-control" type="text" name="mensaje" id="">
+                                            <!-- <br> -->
+                                            <!-- <textarea required placeholder="Escriba su mensaje" class="form-control" name="mensaje" id="" rows="3"></textarea> -->
                                             <br>
                                             <button class="btn btn-primary w-100 align-self-center" type="submit">ENVIAR</button>
                                         </form>
