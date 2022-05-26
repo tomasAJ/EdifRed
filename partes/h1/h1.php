@@ -18,7 +18,7 @@
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
 
-            <?php include('../../partes/bandeja.php') ?>
+            <?php include('../bandeja.php') ?>
                 <section>
                     <div class="container">
                         <div class="row">
