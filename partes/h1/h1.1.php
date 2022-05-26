@@ -55,7 +55,7 @@ if ($_GET) {
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
                 <!-- section 1 -->
-                <?php include('../../partes/bandeja.php') ?>
+                <?php include('../bandeja.php') ?>
 
                 <section class="bg-light py-3">
                     <div class="container">
