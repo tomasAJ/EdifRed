@@ -35,7 +35,7 @@
                         mensaje
                         </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../partes/h1/h1.php"><i class="fas fa-user"></i> Mi bandeja</a>
+                                <a class="dropdown-item" href="../partes/h1/miBandeja.php"><i class="fas fa-user"></i> Mi bandeja</a>
                                 
                            
                             </div>

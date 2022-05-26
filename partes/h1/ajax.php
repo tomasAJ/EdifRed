@@ -1,6 +1,8 @@
 <?php
 include_once '../conexion.php';
 
+session_start();
+
 if ( $_POST['tipocargo'] ) {
     $variable = $_POST['tipocargo'];
     
@@ -20,6 +22,8 @@ if ( $_POST['tipocargo'] ) {
                 echo '<option selected>Seleccione el nombre del destinatario...</option>';
             foreach ($CONSERJE as $c) {
                 echo '<option>' . $c['nombre'] . '</option>';
+                // echo '<option>' . $c['nombre'] . ' ' . $c['apellido'] . '</option>';
+                
             }
 
             break;
@@ -28,7 +32,9 @@ if ( $_POST['tipocargo'] ) {
             $ADMIN =  $conn->query("SELECT `rut`,`nombre`,`apellido` FROM ADMINISTRATIVO WHERE `administrador` = 'si'");
             echo '<option selected>Seleccione el nombre del destinatario...</option>';
             foreach ($ADMIN as $co) {
-                echo '<option>' . $co['nombre'] . '</option>';
+                echo '<option>' . $co['nombre']  . '</option>';
+                // echo '<option>' . $co['nombre'] . ' '. $c['apellido'] . '</option>';
+
             }
             break;
         case 'Vecino':
@@ -36,7 +42,12 @@ if ( $_POST['tipocargo'] ) {
             $VECINO = $conn->query("SELECT `rut`,`nombre`,`apellido` FROM `VECINO`");
             echo '<option selected>Seleccione el nombre del destinatario...</option>';
             foreach ($VECINO as $v) {
-                echo '<option>' . $v['nombre'] . '</option>';
+                 if($_SESSION['usuario']!=$v['rut'] ) {
+                    echo '<option>' . $v['nombre']  . '</option>';
+                // echo '<option>' . $v['nombre'] . ' ' . $c['apellido'] . '</option>';
+
+                }
+                
             }
             break;
 
