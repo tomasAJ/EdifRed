@@ -4,10 +4,10 @@
         <h4 class="text-light font-weight-bold mb-0">EDIFRED</h4>
     </div>
     <div class="menu">
-        <a href="../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+        <a href="../../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Inicio</a>
 
-        <a href="../partes/h2/aviso_vecino_o_comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+        <a href="aviso_vecino_o_comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Diario Mural</a>
 
 
@@ -32,7 +32,7 @@
         <a href="" class="d-block text-light p-3 border-0"><i class="fas fa-drumstick-bite"></i>
             Administrativos</a>
 
-        <a href="../perfil/" class="d-block text-light p-3 border-0"><i class="fas fa-user"></i>
+        <a href="../../perfil/" class="d-block text-light p-3 border-0"><i class="fas fa-user"></i>
             Perfil</a>
 
         <a href="" class="d-block text-light p-3 border-0"><i class="fas fa-sliders-h"></i>

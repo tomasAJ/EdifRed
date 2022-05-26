@@ -22,10 +22,10 @@
                         <?php echo $_SESSION['nombreusuario'];?>
                         </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../perfil"><i class="fas fa-user"></i> Mi perfil</a>
+                                <a class="dropdown-item" href="../../perfil"><i class="fas fa-user"></i> Mi perfil</a>
                                 
                             <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href=""><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                                <a class="dropdown-item" href="../cerrar.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                             </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -34,7 +34,7 @@
                         mensaje
                         </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../partes/h1.php"><i class="fas fa-user"></i> Mi bandeja</a>
+                                <a class="dropdown-item" href="../h1.php"><i class="fas fa-user"></i> Mi bandeja</a>
                                 
                            
                             </div>
