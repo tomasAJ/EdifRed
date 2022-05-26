@@ -7,7 +7,7 @@
         <a href="../../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Inicio</a>
 
-        <a href="../h2/aviso_vecino_o_comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+        <a href="../h2/aviso-vecino-o-comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Diario Mural</a>
 
 
