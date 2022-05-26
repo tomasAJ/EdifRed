@@ -12,7 +12,7 @@
         <div class="w-100">
 
             <!-- Navbar -->
-            <?php include('../../partes/nav.php') ?>
+            <?php include('nav.php') ?>
             <!-- Fin Navbar -->
 
             <!-- Page Content -->
