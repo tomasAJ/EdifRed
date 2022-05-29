@@ -60,7 +60,7 @@ if ($_GET) {
                 <section class="bg-light py-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-4 col-md-8">
+                            <div class="col-lg-4 col-md-4">
                                 <div class="card rounded-0">
                                     <div class="card-header bg-light">
                                         <h6 class="font-weight-bold mb-0">MENSAJE</h6>
@@ -98,71 +98,76 @@ if ($_GET) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-4 d-flex">
+                            
+                            <div class="col-lg-8 col-md-8">
                                 <div class="card rounded-0">
                                     <div class="card-header bg-light">
-                                        <h6 class="font-weight-bold mb-0">MENSAJE</h6>
+                                        <h6 class="font-weight-bold mb-0">MENSAJES</h6>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body d-flex">
                                         <div class="col-lg-12 my-3">
-                                            <table class="table">
-                                                <!-- <thead> -->
-                                                <tr class="mx-auto">
-                                                    <th>EMISOR</th>
-                                                    <th>DESTINATARIO</th>
-                                                    <th>MENSAJE</th>
-                                                    <th>FECHA</th>
-                                                    <th>TIPO</th>
-                                                    <th>ACCION</th>
-                                                </tr>
-                                                <!-- </thead> -->
-                                                <tbody>
-                                                    <?php
-                                                    $r = $xd->fetchAll();
-                                                    foreach ($msjs as $msj) {
-                                                    ?>
-                                                        <tr>
-                                                            <td><?php
-                                                                foreach ($r as $x) {
-                                                                    if ($x['rut'] == $msj['emisor']) {
-                                                                        # code...
-                                                                        echo $x['nombre'];
-                                                                        break;
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <!-- <thead> -->
+                                                    <tr class="mx-auto">
+                                                        <th>EMISOR</th>
+                                                        <th>DESTINATARIO</th>
+                                                        <th>MENSAJE</th>
+                                                        <th>FECHA</th>
+                                                        <th>TIPO</th>
+                                                        <th>ACCION</th>
+                                                    </tr>
+                                                    <!-- </thead> -->
+                                                    <tbody>
+                                                        <?php
+                                                        $r = $xd->fetchAll();
+                                                        foreach ($msjs as $msj) {
+                                                        ?>
+                                                            <tr>
+                                                                <td><?php
+                                                                    foreach ($r as $x) {
+                                                                        if ($x['rut'] == $msj['emisor']) {
+                                                                            # code...
+                                                                            echo $x['nombre'];
+                                                                            break;
+                                                                        }
                                                                     }
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                            <td><?php
-                                                                foreach ($r as $x) {
-                                                                    if ($x['rut'] == $msj['destinatario']) {
-                                                                        # code...
-                                                                        echo $x['nombre'];;
-                                                                        break;
+                                                                    ?>
+                                                                </td>
+                                                                <td><?php
+                                                                    foreach ($r as $x) {
+                                                                        if ($x['rut'] == $msj['destinatario']) {
+                                                                            # code...
+                                                                            echo $x['nombre'];;
+                                                                            break;
+                                                                        }
                                                                     }
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                            <td> <?php echo $msj['mensaje']; ?> </td>
+                                                                    ?>
+                                                                </td>
+                                                                <td> <?php echo $msj['mensaje']; ?> </td>
 
-                                                            <td> <?php
-                                                            $fecha_mensaje = new DateTime($msj['fecha']);
-                                                            echo $fecha_mensaje->format('d-m-Y'); 
-                                                             
-                                                             ?> </td>
+                                                                <td> <?php
+                                                                        $fecha_mensaje = new DateTime($msj['fecha']);
+                                                                        echo $fecha_mensaje->format('d-m-Y');
 
-                                                            <td> <?php echo $msj['tipo']; ?> </td>
-                                                            <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
-                                                        </tr>
-                                                    <?php
+                                                                        ?> </td>
 
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
+                                                                <td> <?php echo $msj['tipo']; ?> </td>
+                                                                <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
+                                                            </tr>
+                                                        <?php
+
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
