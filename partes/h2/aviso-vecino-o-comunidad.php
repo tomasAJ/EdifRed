@@ -47,6 +47,9 @@ switch ($accion) {
 
         $txtnombre = $mensajes['destinatario'];
         $txtmensaje = $mensajes['mensaje'];
+
+        
+
         break;
     case "Borrar":
         //echo"presionando boton borrar";
@@ -68,7 +71,7 @@ switch ($accion) {
         break;
 }
 
-$sentenciaSQL = $conn->prepare("SELECT * FROM MENSAJE ");
+$sentenciaSQL = $conn->prepare("SELECT MENSAJE.id, VECINO.nombre, MENSAJE.mensaje, MENSAJE.fecha, MENSAJE.tipo FROM MENSAJE, VECINO WHERE MENSAJE.destinatario=VECINO.rut ORDER BY MENSAJE.id ");
 $sentenciaSQL->execute();
 $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
@@ -143,6 +146,7 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                     <!-- <th>ID</th> -->
                                     <th>Destinatario</th>
                                     <th>Mensaje</th>
+                                    <th>fecha</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -152,13 +156,14 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                 <?php foreach ($listamensajes as $mensaje) {         ?>
                                     <tr>
                                         <!-- <td>?php echo $mensaje['id'] ?></td> -->
-                                        <td><?php echo $mensaje['destinatario'] ?></td> 
+                                        <td><?php echo $mensaje['nombre'] ?></td> 
     
                                         <td><?php echo $mensaje['mensaje'] ?></td>
+                                        <td><?php echo $mensaje['fecha'] ?></td>
                                         <td>
                                             <form method="post">
                                                 <input type="hidden" name="txtid" id="txtid" value="<?php echo $mensaje['id'] ?>" />
-                                                <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
+                                                <input onclick="alert(<?php echo $mensaje['nombre'] ?>);" type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
                                                 <input type="submit" name="accion" value="Borrar" class="btn btn-danger" />
                                             </form>
 
@@ -193,6 +198,15 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" >
+        function set( nombre_seleccionado){
+            alert(nombre_seleccionado);
+
+        }
+
+    </script>
 
 </body>
 
