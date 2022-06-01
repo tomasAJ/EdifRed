@@ -108,9 +108,15 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                 <label for="txtnombre">Destinatario:</label>
                                 <select name="txtnombre" id="txtnombre" class="form-control">
                                     <?php foreach ($lista as $usuario) {
-                                        echo $usuario['rut']; ?>
+                                        if(isset($txtnombre) && $usuario['rut']==$txtnombre ){
+                                    ?>
+                                        <option selected value="<?php echo $usuario['rut']; ?>"><?php echo $usuario['nombre']; ?></option>
+                                    <?php
+                                        } else {
+                                    ?>
                                         <option value="<?php echo $usuario['rut']; ?>"><?php echo $usuario['nombre']; ?></option>
                                     <?php
+                                        }
                                     } ?>
 
                                 </select>
@@ -161,7 +167,7 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                         <td>
                                             <form method="post">
                                                 <input type="hidden" name="txtid" id="txtid" value="<?php echo $mensaje['id'] ?>" />
-                                                <input onclick="set(<?php echo $mensaje['nombre'] ?>) " type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
+                                                <input type="submit" name="accion" value="Seleccionar" class="btn btn-primary" />
                                                 <input type="submit" name="accion" value="Borrar" class="btn btn-danger" />
                                             </form>
 
@@ -199,8 +205,10 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
     <script type="text/javascript">
-        function set(nombre_seleccionado) {
-            alert(nombre_seleccionado);
+        function set(rut_seleccionado) {
+            //alert(rut_seleccionado);
+            //$('#txtnombre').html('');
+
 
         }
     </script>
