@@ -1,24 +1,20 @@
-<?php include("../partes/conexion.php"); ?>
-<?php
+<?php include("../partes/conexion.php");
 session_start();
-
 if ($_POST) {
-    if (($_POST['usuario'] == "112223334") && ($_POST['contrasenia'] == "112223334")) {
-        $_SESSION['usuario'] = "112223334";
-
-        $_SESSION['nombreusuario']= 'Javier Contador';
-
+    if (($_POST['usuario'] == "112223333") && ($_POST['contrasenia'] == "112223333")) {
+        $_SESSION['usuario'] = "112223333";
+        $_SESSION['nombreusuario']= 'Tomas Contador';
         header('Location: ../inicio');
+    } elseif (($_POST['usuario'] == "112223334") && ($_POST['contrasenia'] == "112223334")) {
+        $_SESSION['usuario'] = "112223334";
+        $_SESSION['nombreusuario']= 'Javier Contador';
     } else {
         echo "<script> alert('Usuario o contraseña incorrecta'); </script>";
     }
 }
 ?>
-
-
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Login</title>
     <!-- Required meta tags -->
@@ -48,13 +44,7 @@ if ($_POST) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
 </head>
-
 <body>
-
-
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-4"></div>
@@ -77,8 +67,5 @@ if ($_POST) {
             <div class="col-md-4"></div>
         </div>
     </div>
-
 </body>
-
 </html>
-
