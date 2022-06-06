@@ -1,7 +1,7 @@
 <?php
     session_start();
-    #print_r($_SESSION);
-    if(isset($_SESSION['usuario'])!="112223334") {
+    //usuario 112223333 corresponde a un administrador
+    if(isset($_SESSION['usuario'])!="112223333") {
         header("location:login.php");
     }
 ?>

@@ -1,6 +1,1 @@
-<?php 
-
-// header('Location: inicio');
-
-header('Location: partes/login.php');
-?>
+<?php header('Location: partes/login.php');?>
