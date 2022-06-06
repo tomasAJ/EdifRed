@@ -8,6 +8,7 @@ if ($_POST) {
     } elseif (($_POST['usuario'] == "112223334") && ($_POST['contrasenia'] == "112223334")) {
         $_SESSION['usuario'] = "112223334";
         $_SESSION['nombreusuario']= 'Javier Contador';
+        header('Location: ../inicio');
     } else {
         echo "<script> alert('Usuario o contraseña incorrecta'); </script>";
     }
