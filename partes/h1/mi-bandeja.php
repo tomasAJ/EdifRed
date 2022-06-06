@@ -2,7 +2,6 @@
 <?php include('head.php') ?>
 <!-- fin head -->
 
-
 <body>
     <div class="d-flex" id="content-wrapper">
         <!-- sideBar -->
@@ -18,30 +17,48 @@
             <!-- Page Content -->
             <div id="content" class="bg-grey w-100">
 
-            <?php include('../bandeja.php') ?>
+                <?php include('../bandeja.php') ?>
+                
                 <section>
+
                     <div class="container">
+
                         <div class="row">
+
                             <div class="col-lg-12 my-3">
+
                                 <div class="card rounded-0">
+
                                     <div class="card-header bg-light">
-                                        <h6 class="font-weight-bold mb-0">MENSAJES</h6>
+
+                                        <h6 class="font-weight-bold mb-0">
+                                            MENSAJES
+                                        </h6>
+
                                     </div>
+
                                     <div class="card-body">
-                                        <p class="lead text-muted">No hay mensajes</p>
+
+                                        <p class="lead text-muted">
+                                            No hay mensajes
+                                        </p>
+
                                     </div>
+
                                 </div>
+
                             </div>
 
-
-
                         </div>
+
                     </div>
+
                 </section>
 
             </div>
 
         </div>
+
     </div>
 
     <!-- Optional JavaScript -->
