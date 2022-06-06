@@ -1,4 +1,4 @@
-<?php include("head.php"); ?> 
+<?php include("head.php"); ?>
 
 
 <?php include("../conexion.php"); ?>
@@ -19,7 +19,7 @@ $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 //echo $txtnombre."<br>";
 //echo $txtmensaje."<br>";
 //echo $accion."<br>";
-$usuarios=$conn->prepare(" SELECT rut,nombre FROM VECINO ");
+$usuarios = $conn->prepare(" SELECT rut,nombre FROM VECINO ");
 $usuarios->execute();
 $lista = $usuarios->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,7 +29,7 @@ switch ($accion) {
         // echo "presionando boton enviar";
         //prepara la consulta sql
         $sentenciaSQL = $conn->prepare("INSERT INTO MENSAJE (emisor, destinatario, mensaje, fecha, tipo) VALUES ( '112223334', :destinatario, :mensaje,'2022-05-12','');");
-        
+
         $sentenciaSQL->bindParam(':destinatario', $txtnombre);
         $sentenciaSQL->bindParam(':mensaje', $txtmensaje);
         //ejecuta la consulta sql
@@ -47,6 +47,9 @@ switch ($accion) {
 
         $txtnombre = $mensajes['destinatario'];
         $txtmensaje = $mensajes['mensaje'];
+
+
+
         break;
     case "Borrar":
         //echo"presionando boton borrar";
@@ -68,7 +71,7 @@ switch ($accion) {
         break;
 }
 
-$sentenciaSQL = $conn->prepare("SELECT * FROM MENSAJE ");
+$sentenciaSQL = $conn->prepare("SELECT MENSAJE.id, VECINO.nombre, MENSAJE.mensaje, MENSAJE.fecha, MENSAJE.tipo FROM MENSAJE, VECINO WHERE MENSAJE.destinatario=VECINO.rut ORDER BY MENSAJE.id ");
 $sentenciaSQL->execute();
 $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
@@ -80,17 +83,17 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-   
-   
 
- 
+
+
+
 <body>
 
     <div class="d-flex" id="content-wrapper">
         <?php include("sidebar.php"); ?>
         <div class="w-100">
 
-            <?php include("nav.php"); ?> 
+            <?php include("nav.php"); ?>
             <div id="content" class="bg-grey w-100">
                 <section>
                     <div class="col-md-12">
@@ -104,12 +107,18 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                             <div class="form-group">
                                 <label for="txtnombre">Destinatario:</label>
                                 <select name="txtnombre" id="txtnombre" class="form-control">
-                                    <?php foreach ($lista as $usuario){
-                                        echo $usuario['rut'];?>
-                                        <option  value="<?php echo $usuario['rut'];?>"><?php echo $usuario['nombre'];?></option>
-                                            <?php 
-                                    } ?>     
-                                    
+                                    <?php foreach ($lista as $usuario) {
+                                        if(isset($txtnombre) && $usuario['rut']==$txtnombre ){
+                                    ?>
+                                        <option selected value="<?php echo $usuario['rut']; ?>"><?php echo $usuario['nombre']; ?></option>
+                                    <?php
+                                        } else {
+                                    ?>
+                                        <option value="<?php echo $usuario['rut']; ?>"><?php echo $usuario['nombre']; ?></option>
+                                    <?php
+                                        }
+                                    } ?>
+
                                 </select>
                                 <!-- <input type="text" class="form-control" name="txtnombre" id="txtnombre" value="?php echo $txtnombre ?>" placeholder="nombre del vecino:"> -->
                             </div>
@@ -143,18 +152,18 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                     <!-- <th>ID</th> -->
                                     <th>Destinatario</th>
                                     <th>Mensaje</th>
+                                    <th>fecha</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>
 
-                            
+
                                 <?php foreach ($listamensajes as $mensaje) {         ?>
                                     <tr>
-                                        <!-- <td>?php echo $mensaje['id'] ?></td> -->
-                                        <td><?php echo $mensaje['destinatario'] ?></td> 
-    
+                                        <td><?php echo $mensaje['nombre'] ?></td>
                                         <td><?php echo $mensaje['mensaje'] ?></td>
+                                        <td><?php echo $mensaje['fecha'] ?></td>
                                         <td>
                                             <form method="post">
                                                 <input type="hidden" name="txtid" id="txtid" value="<?php echo $mensaje['id'] ?>" />
@@ -167,15 +176,15 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
                                         </td>
                                     </tr>
                                 <?php } ?>
-                            
+
                             </tbody>
                         </table>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </div>
                 </section>
 
@@ -187,12 +196,35 @@ $listamensajes = $sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-<!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+        function set(rut_seleccionado) {
+            //alert(rut_seleccionado);
+            //$('#txtnombre').html('');
+
+
+        }
+    </script>
+
+    <script type="text/javascript">
+        function getSelectValue(value) {
+            $('#inpu').html('');
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', 'ajax.php', true);
+            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.onreadystatechange = function() {
+                document.getElementById('inpu').innerHTML = xhttp.responseText;
+            }
+            xhttp.send('tipocargo=' + value);
+        }
+    </script>
 
 </body>
 
