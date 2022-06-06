@@ -7,7 +7,11 @@
         <a href="../inicio" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Inicio</a>
 
-        <a href="../partes/h2/aviso-vecino-o-comunidad.php" class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
+      
+         <a href="
+         <?php if ($_SESSION['usuario'] == "112223333"){echo '../partes/h2/aviso-vecino-o-comunidad.php';}
+         elseif($_SESSION['usuario'] == "112223334"){echo '';}?>"
+         class="d-block text-light p-3 border-0"><i class="fas fa-tachometer-alt"></i>
             Diario Mural</a>
 
 

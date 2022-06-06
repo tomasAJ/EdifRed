@@ -37,7 +37,9 @@
                         mensaje
                         </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="../partes/h1/mi-bandeja.php"><i class="fas fa-user"></i> Mi bandeja</a>
+                                <a class="dropdown-item" href=" 
+                                <?php if ($_SESSION['usuario'] == "112223333"){ echo '../perfil';}elseif ($_SESSION['usuario'] == "112223334"){ echo '../partes/h1/mi-bandeja.php';}
+                                ?>"><i class="fas fa-user"></i> Mi bandeja</a>
                                 
                            
                             </div>
