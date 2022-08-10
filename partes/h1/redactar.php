@@ -136,10 +136,12 @@ if ($_GET) {
                                     </div>
 
                                 </div>
-
+                                <br>
                             </div>
+                            <br>
+                            <br>
                             
-                            <div class="col-lg-8 col-md-8">
+                            <div class="col-lg-12 col-md-12">
 
                                 <div class="card rounded-0">
 
@@ -163,7 +165,7 @@ if ($_GET) {
                                                             <th>MENSAJE</th>
                                                             <th>FECHA</th>
                                                             <th>TIPO</th>
-                                                            <th>ACCION</th>
+                                                            <th>ACCIÓN</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -184,7 +186,9 @@ if ($_GET) {
                                                         <tr>
                                                             <td><?php echo $EMISOR;?></td>
                                                             <td><?php echo $DESTINATARIO;?></td>
-                                                            <td><?php echo $msj['mensaje'];?></td>
+                                                            
+                                                            <td>
+                                                                <?php echo     ucfirst($msj['mensaje']);?></td>
 
                                                             <td> 
                                                                 <?php
@@ -193,7 +197,7 @@ if ($_GET) {
                                                                 ?>
                                                             </td>
 
-                                                            <td><?php echo $msj['tipo'];?></td>
+                                                            <td><?php echo ucfirst($msj['tipo']);?></td>
                                                             <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
                                                         </tr>
                                                         <?php
