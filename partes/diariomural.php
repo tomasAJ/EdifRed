@@ -77,40 +77,26 @@
 
 
     <script type="text/javascript">
-        function getSelectValue(value) {
-
-            $('#inpu').html('');
-
-            var xhttp = new XMLHttpRequest();
-
-            xhttp.open('POST', 'ajax.php', true);
-
-            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            xhttp.onreadystatechange = function() {
-                document.getElementById('inpu').innerHTML = xhttp.responseText;
-            }
-
-            xhttp.send('tipocargo=' + value);
-
-        }
-    </script>
-
-    <script>
-        function aviso(value) {
+       function aviso(value) {
+            
+            
+            
             var variable = value.split('-');
             Swal.fire({
                 //position: 'top-end',
                 //icon: 'success',
-                title: variable[0],
+                text: variable[5],
                 showConfirmButton: false,
                 //timer: 3000,
-                text: variable[1]
+                title: variable[1],
+                footer:variable[4] + '- ' + variable[3] + ' - ' +variable[2] 
             })
             
             
         }
     </script>
+
+   
     <!-- CDN SWEETALERT2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Optional JavaScript -->

@@ -104,7 +104,7 @@ if ($_GET) {
                                                 DESTINATARIO
                                             </label>
 
-                                            <select id="inputState1" class="form-control" name="cargoDestinatario" onchange="getSelectValue(this.value);">
+                                            <select required id="inputState1" class="form-control" name="cargoDestinatario" onchange="getSelectValue(this.value);">
 
                                                 <option selected>Seleccione el cargo del destinatario...</option>
                                                 <option>Conserje</option>
@@ -116,23 +116,26 @@ if ($_GET) {
 
                                             <br>
 
-                                            <select id="inpu" class="form-control" name="nombreDestinatario">
+                                            <select required id="inpu" class="form-control" name="nombreDestinatario">
 
                                                 <option selected>Seleccione el nombre del destinatario...</option>
 
                                             </select>
                                             <br>
-                                            <select id="tipodeAsunto" class="form-control" name="tipo">
+                                            ASUNTO
+                                            <br>
+                                            <select required id="tipodeAsunto" class="form-control" name="tipo">
 
-                                                <option selected> </option>
+                                                <option> </option>
 
                                             </select>
 
                                             <br>
-                                            ASUNTO
+                                            MENSAJE
                                             <br>
 
-                                            <input required placeholder="Escriba su mensaje" class="form-control" type="text" name="mensaje" id="">
+                                            <input required onkeypress="return ((event.charCode >=32 && event.charCode <= 34) ||(event.charCode >=39 && event.charCode <= 41)||(event.charCode ==44 )||(event.charCode==6)||(event.charCode >=48 && event.charCode <=58)||(event.charCode >= 63 && event.charCode <= 90)||(event.charCode >= 97 && event.charCode <= 122))"
+                                            oninput="useRegex();" placeholder="Escriba su mensaje" class="form-control" type="text" name="mensaje" id="input-text">
 
                                             <br>
 
@@ -257,10 +260,22 @@ if ($_GET) {
                 '<option selected>Seleccione tipo de mensaje</option>' +
                 '<option >Venta</option>'+
                 '<option >Arriendo</option>'+
-                '<option >Aviso</option>';
+                '<option >Aviso</option>'+
+                '<option >Comunicado</option>'+
+                '<option >Citación</option>'+
+                '<option >Gastos comunes</option>'+
+                '<option >Importante</option>'+
+                '<option >Publicidad</option>'+
+                '<option >Corte de agua</option>'+
+                '<option >Reclamo</option>';
             }          
             else{
-                document.getElementById('tipodeAsunto').innerHTML = " ";
+                if(value == 'Vecino'){
+                    document.getElementById('tipodeAsunto').innerHTML = 
+                    '<option selected>Seleccione tipo de mensaje</option>'+  
+                    '<option >Reclamo</option>'+
+                    '<option >Aviso</option>';
+                }
             }
         }
     </script>
