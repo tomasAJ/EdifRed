@@ -7,7 +7,7 @@
 <?php
 
 #consulta a la base de datos
-$usuario=$_SESSION['usuario'];
+$usuario = $_SESSION['usuario'];
 $mensajes = $conn->query("SELECT * FROM `MENSAJE` WHERE (emisor='$usuario' OR destinatario='$usuario') ");
 
 $vecinos = $conn->query("SELECT `rut`,`nombre` FROM `VECINO` UNION SELECT `rut`, `nombre` FROM `ADMINISTRATIVO`");
@@ -17,31 +17,32 @@ if ($_POST) {
     $cargoDestinatario = $_POST['cargoDestinatario'] . "";
 
     $nombreDestinatario = $_POST['nombreDestinatario'] . "";
-    
+
     $rutEmisor = $_SESSION['usuario'] . "";
-   
+
     foreach ($vecinos as $vecino) {
 
         if ($vecino['nombre'] == $nombreDestinatario) {
             $rutDestinatario = $vecino['rut'];
         }
-
     }
 
     $mensaje = $_POST['mensaje'];
-
     $fechaActual = new DateTime();
 
     $fecha = $fechaActual->format('Y-m-d') . "";
 
-    $tipo = "";
+    $tipo = $_POST['tipo'];
+    if($tipo=='Seleccione tipo de mensaje'){
+        $tipo=" ";
+    }
+    
 
     $sql = "INSERT INTO `MENSAJE` (`id`, `emisor`, `destinatario`, `mensaje`,`fecha`,`tipo`) VALUES (NULL,'$rutEmisor','$rutDestinatario','$mensaje',  '$fecha' , '$tipo')";
-    
+
     $insert = $conn->query($sql);
 
     header("location:redactar.php");
-
 }
 
 if ($_GET) {
@@ -120,6 +121,12 @@ if ($_GET) {
                                                 <option selected>Seleccione el nombre del destinatario...</option>
 
                                             </select>
+                                            <br>
+                                            <select id="tipodeAsunto" class="form-control" name="tipo">
+
+                                                <option selected> </option>
+
+                                            </select>
 
                                             <br>
                                             ASUNTO
@@ -140,7 +147,7 @@ if ($_GET) {
                             </div>
                             <br>
                             <br>
-                            
+
                             <div class="col-lg-12 col-md-12">
 
                                 <div class="card rounded-0">
@@ -176,30 +183,29 @@ if ($_GET) {
                                                             foreach ($listaVecinos as $vecino) {
                                                                 if ($vecino['rut'] == $msj['emisor']) {
                                                                     $EMISOR = $vecino['nombre'];
-                                                                    
                                                                 }
                                                                 if ($vecino['rut'] == $msj['destinatario']) {
                                                                     $DESTINATARIO = $vecino['nombre'];
-                                                                } 
+                                                                }
                                                             }
                                                         ?>
-                                                        <tr>
-                                                            <td><?php echo $EMISOR;?></td>
-                                                            <td><?php echo $DESTINATARIO;?></td>
-                                                            
-                                                            <td>
-                                                                <?php echo     ucfirst($msj['mensaje']);?></td>
+                                                            <tr>
+                                                                <td><?php echo $EMISOR; ?></td>
+                                                                <td><?php echo $DESTINATARIO; ?></td>
 
-                                                            <td> 
-                                                                <?php
-                                                                $fecha_mensaje = new DateTime($msj['fecha']);
-                                                                echo $fecha_mensaje->format('d-m-Y');
-                                                                ?>
-                                                            </td>
+                                                                <td>
+                                                                    <?php echo     ucfirst($msj['mensaje']); ?></td>
 
-                                                            <td><?php echo ucfirst($msj['tipo']);?></td>
-                                                            <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
-                                                        </tr>
+                                                                <td>
+                                                                    <?php
+                                                                    $fecha_mensaje = new DateTime($msj['fecha']);
+                                                                    echo $fecha_mensaje->format('d-m-Y');
+                                                                    ?>
+                                                                </td>
+
+                                                                <td><?php echo ucfirst($msj['tipo']); ?></td>
+                                                                <td> <a class="btn btn-danger" href="?borrar= <?php echo $msj['id']; ?> "> Eliminar </a> </td>
+                                                            </tr>
                                                         <?php
                                                         }
                                                         ?>
@@ -230,7 +236,6 @@ if ($_GET) {
     </div>
 
     <script type="text/javascript">
-
         function getSelectValue(value) {
 
             $('#inpu').html('');
@@ -238,7 +243,7 @@ if ($_GET) {
             var xhttp = new XMLHttpRequest();
 
             xhttp.open('POST', 'ajax.php', true);
-            
+
             xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             xhttp.onreadystatechange = function() {
@@ -246,11 +251,20 @@ if ($_GET) {
             }
 
             xhttp.send('tipocargo=' + value);
-
+            
+            if(value == 'Administrador'){
+                document.getElementById('tipodeAsunto').innerHTML = 
+                '<option selected>Seleccione tipo de mensaje</option>' +
+                '<option >Venta</option>'+
+                '<option >Arriendo</option>'+
+                '<option >Aviso</option>';
+            }          
+            else{
+                document.getElementById('tipodeAsunto').innerHTML = " ";
+            }
         }
-
     </script>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
